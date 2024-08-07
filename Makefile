@@ -5,6 +5,7 @@ MODULES := cpu
 OBJECT_FILES := main.o cpu/cpu.a
 
 
+
 all: ${EXEC_NAME} 
 
 ${EXEC_NAME}: ${OBJECT_FILES} ${MODULES} 
@@ -14,8 +15,8 @@ main.o: main.c
 	${CC} -c main.c ${CFLAGS}
 
 cpu/cpu.a: 
-	make -f cpu/cpu_Makefile.mk cpu_all
+	(cd cpu && make -f cpu_Makefile.mk cpu_all)
 
 clean:
 	rm -f ${OBJECT_FILES} ${EXEC_NAME}
-	make -f cpu/cpu_Makefile.mk cpu_clean
+	(cd cpu && make -f cpu_Makefile.mk cpu_clean)
